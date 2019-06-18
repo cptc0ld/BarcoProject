@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="URVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_ArticleNumber">
+          <Key>
+            <PropertyRef Name="Arti_ID" />
+          </Key>
+          <Property Name="Arti_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Arti_No" Type="nvarchar" MaxLength="50" />
+          <Property Name="Arti_Des" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TB_DB_Connection">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConString" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar(max)" />
+          <Property Name="SrNoColumnName" Type="nvarchar(max)" />
+          <Property Name="ArtiColumnName" Type="nvarchar(max)" />
+          <Property Name="DateColumnName" Type="nvarchar(max)" />
+          <Property Name="StartTimeColName" Type="nvarchar(max)" />
+          <Property Name="EndTimeColName" Type="nvarchar(max)" />
+          <Property Name="StatusColumnName" Type="nvarchar(max)" />
+          <Property Name="OperColumnName" Type="nvarchar(max)" />
+          <Property Name="RptLocColumnName" Type="nvarchar(max)" />
+          <Property Name="SystemName" Type="nvarchar(max)" />
+          <Property Name="Fields" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="TestStation" Type="nvarchar(max)" />
+          <Property Name="ArticleNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValidateTest" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_ITrAR">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="Arti_ID" />
+          </Key>
+          <Property Name="ItemID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Arti_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_ITrDB">
+          <Key>
+            <PropertyRef Name="ConID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ConID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ItemID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_ITrTS">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="ItemID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TestID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_TestStage">
+          <Key>
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="TestID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestStage" Type="nvarchar" MaxLength="50" />
+          <Property Name="TestStation" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TB_TSrAR">
+          <Key>
+            <PropertyRef Name="TestID" />
+            <PropertyRef Name="Arti_ID" />
+          </Key>
+          <Property Name="TestID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Arti_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="URVModelStoreContainer">
+          <EntitySet Name="TB_ArticleNumber" EntityType="Self.TB_ArticleNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DB_Connection" EntityType="Self.TB_DB_Connection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Item" EntityType="Self.TB_Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_ITrAR" EntityType="Self.TB_ITrAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_ITrDB" EntityType="Self.TB_ITrDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_ITrTS" EntityType="Self.TB_ITrTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TestStage" EntityType="Self.TB_TestStage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TSrAR" EntityType="Self.TB_TSrAR" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="URVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_ArticleNumber">
+          <Key>
+            <PropertyRef Name="Arti_ID" />
+          </Key>
+          <Property Name="Arti_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Arti_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Arti_Des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TB_DB_Connection">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConString" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SrNoColumnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArtiColumnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateColumnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTimeColName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndTimeColName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusColumnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OperColumnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RptLocColumnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SystemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fields" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TB_Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TestStation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValidateTest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_TestStage">
+          <Key>
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="TestID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestStage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TestStation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="URVEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_ArticleNumber" EntityType="Self.TB_ArticleNumber" />
+          <EntitySet Name="TB_DB_Connection" EntityType="Self.TB_DB_Connection" />
+          <EntitySet Name="TB_Item" EntityType="Self.TB_Item" />
+          <EntitySet Name="TB_TestStage" EntityType="Self.TB_TestStage" />
+          <EntitySet Name="TB_ITrAR" EntityType="URVModel.TB_ITrAR" />
+          <EntitySet Name="TB_ITrDB" EntityType="URVModel.TB_ITrDB" />
+          <EntitySet Name="TB_ITrTS" EntityType="URVModel.TB_ITrTS" />
+          <EntitySet Name="TB_TSrAR" EntityType="URVModel.TB_TSrAR" />
+        </EntityContainer>
+        <EntityType Name="TB_ITrAR">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="Arti_ID" />
+          </Key>
+          <Property Name="ItemID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Arti_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TB_ITrDB">
+          <Key>
+            <PropertyRef Name="ConID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ConID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ItemID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TB_ITrTS">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="ItemID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TestID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TB_TSrAR">
+          <Key>
+            <PropertyRef Name="TestID" />
+            <PropertyRef Name="Arti_ID" />
+          </Key>
+          <Property Name="TestID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Arti_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="URVModelStoreContainer" CdmEntityContainer="URVEntities1">
+          <EntitySetMapping Name="TB_ArticleNumber">
+            <EntityTypeMapping TypeName="URVModel.TB_ArticleNumber">
+              <MappingFragment StoreEntitySet="TB_ArticleNumber">
+                <ScalarProperty Name="Arti_ID" ColumnName="Arti_ID" />
+                <ScalarProperty Name="Arti_No" ColumnName="Arti_No" />
+                <ScalarProperty Name="Arti_Des" ColumnName="Arti_Des" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DB_Connection">
+            <EntityTypeMapping TypeName="URVModel.TB_DB_Connection">
+              <MappingFragment StoreEntitySet="TB_DB_Connection">
+                <ScalarProperty Name="ConID" ColumnName="ConID" />
+                <ScalarProperty Name="ConString" ColumnName="ConString" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="SrNoColumnName" ColumnName="SrNoColumnName" />
+                <ScalarProperty Name="ArtiColumnName" ColumnName="ArtiColumnName" />
+                <ScalarProperty Name="DateColumnName" ColumnName="DateColumnName" />
+                <ScalarProperty Name="StartTimeColName" ColumnName="StartTimeColName" />
+                <ScalarProperty Name="EndTimeColName" ColumnName="EndTimeColName" />
+                <ScalarProperty Name="StatusColumnName" ColumnName="StatusColumnName" />
+                <ScalarProperty Name="OperColumnName" ColumnName="OperColumnName" />
+                <ScalarProperty Name="RptLocColumnName" ColumnName="RptLocColumnName" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Fields" ColumnName="Fields" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Item">
+            <EntityTypeMapping TypeName="URVModel.TB_Item">
+              <MappingFragment StoreEntitySet="TB_Item">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="TestStation" ColumnName="TestStation" />
+                <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+                <ScalarProperty Name="ValidateTest" ColumnName="ValidateTest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TestStage">
+            <EntityTypeMapping TypeName="URVModel.TB_TestStage">
+              <MappingFragment StoreEntitySet="TB_TestStage">
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="TestStage" ColumnName="TestStage" />
+                <ScalarProperty Name="TestStation" ColumnName="TestStation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ITrAR">
+            <EntityTypeMapping TypeName="URVModel.TB_ITrAR">
+              <MappingFragment StoreEntitySet="TB_ITrAR">
+                <ScalarProperty Name="Arti_ID" ColumnName="Arti_ID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ITrDB">
+            <EntityTypeMapping TypeName="URVModel.TB_ITrDB">
+              <MappingFragment StoreEntitySet="TB_ITrDB">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ConID" ColumnName="ConID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ITrTS">
+            <EntityTypeMapping TypeName="URVModel.TB_ITrTS">
+              <MappingFragment StoreEntitySet="TB_ITrTS">
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TSrAR">
+            <EntityTypeMapping TypeName="URVModel.TB_TSrAR">
+              <MappingFragment StoreEntitySet="TB_TSrAR">
+                <ScalarProperty Name="Arti_ID" ColumnName="Arti_ID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

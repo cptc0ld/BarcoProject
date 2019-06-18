@@ -1,0 +1,49 @@
+﻿@model WebApplication8.Models.ItemArticleViewModel
+<br /><br />
+<div>
+<div class="container" style="">
+    <div class="form-group">
+        @if (ViewBag.ItemList != null)
+        {
+            @Html.DropDownListFor(model => model.itemid, ViewBag.ItemList as SelectList, "--Select Item--", new { @class = "form-control" })
+        }
+    </div>
+
+    <div class="form-group">
+        @Html.DropDownListFor(model => model.articleid, new SelectList("  "), "--Select Article--", new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    <form method="post" id="checkbox"></form>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#itemid").change(function () {
+            //debugger
+            $.get("/Home/GetArticleList", { itemid: $("#itemid").val() }, function (data1) {
+                document.getElementById("articleid").innerHTML = "";
+                var sc1 = "";
+                $.each(data1, function (index, row) {
+                    sc1 = sc1 + "<option value= '" + row.Arti_ID + "'>" + row.Arti_No + "  </option>";
+                }
+                )
+                //  debugger
+                document.getElementById("articleid").innerHTML = sc1;
+            })
+            /*$.get("/Home/GetTestStageCheckBox", { itemid: $("#itemid").val() }, function (data) {
+                $("#checkbox").empty();
+                var sc = "";
+                $.each(data, function (index, row) {
+                    sc = sc + "<input type='checkbox' value= '" + row.TestID + "'>" + row.TestID + "  </input>";
+                }
+                )
+                //debugger
+                document.getElementById("checkbox").innerHTML = sc;
+            });*/
+        })
+    });
+</script>
+<script></script>
+</div>
