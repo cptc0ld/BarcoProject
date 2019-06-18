@@ -21,7 +21,6 @@ namespace WebApplication8.Controllers
         public JsonResult GetArticleList(int itemid)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            //List<TB_Item> ItemList = db.TB_Item.Where(a=> a.ItemID == itemid ).ToList();
             var query =
             from art_id in db.TB_ITrAR
             where art_id.ItemID == itemid
